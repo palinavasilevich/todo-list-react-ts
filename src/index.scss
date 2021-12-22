@@ -103,10 +103,7 @@ body {
 
       cursor: pointer;
 
-      // &:hover {
-      //   color: var(--clr-white);
-      //   background-color: var(--clr-blue);
-      // }
+      user-select: none;
     }
   }
 }
