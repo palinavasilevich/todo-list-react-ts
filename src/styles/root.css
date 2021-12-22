@@ -1,0 +1,49 @@
+:root {
+  /* font */
+  --ff-sans: "Josefin Sans", sans-serif;
+  --base-font: 1.8rem;
+  --large-font: 3rem;
+  --sml-font: 1.3rem;
+
+  --fw-normal: 400;
+  --fw-bold: 700;
+  --ls-normal: 1.3rem;
+
+  /* color*/
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-blue: hsl(220, 98%, 61%);
+  --clr-green: hsl(192, 100%, 67%);
+  --clr-pink: hsl(280, 87%, 65%);
+
+  --clr-box-shadow: hsl(0, 0%, 0%, 0.1);
+
+  --icon-check: url("../assets/icon-check.svg");
+}
+
+.light {
+  --img-bg: url("../assets/bg-desktop-light.jpg");
+  --clr-primary: hsl(243, 12%, 30%);
+  --clr-page-bg: hsl(0, 0%, 98%);
+  --clr-card-bg: hsl(0, 0%, 100%);
+  --clr-gb-1: hsl(240, 8%, 24%);
+  --clr-gb-2: hsl(243, 12%, 30%);
+  --clr-gb-3: hsl(252, 6%, 83%);
+  --clr-gb-4: hsl(237, 10%, 64%);
+  --clr-gb-5: hsl(252, 9%, 73%);
+  --clr-gb-6: hsl(252, 21%, 94%);
+}
+
+.dark {
+  --img-bg: url("../assets/bg-desktop-dark.jpg");
+  --clr-primary: hsl(0, 27%, 2%);
+
+  --clr-page-bg: hsl(235, 21%, 11%);
+  --clr-card-bg: hsl(235, 24%, 19%);
+
+  --clr-gb-1: hsl(236, 33%, 92%);
+  --clr-gb-2: hsl(234, 39%, 75%);
+  --clr-gb-3: hsl(234, 11%, 52%);
+  --clr-gb-4: hsl(237, 12%, 36%);
+  --clr-gb-5: hsl(233, 14%, 35%);
+  --clr-gb-6: hsl(235, 19%, 24%);
+}
