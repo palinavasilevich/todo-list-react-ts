@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { ITodo } from "../types/types";
 import TodoFilters from "./TodoFilters";
 import TodoItem from "./TodoItem";
@@ -21,6 +21,7 @@ const TodoList: FC<TodoListProps> = (props) => {
     changeFilter,
     clearCompletedTodos,
   } = props;
+
   return (
     <ul className="todo-list">
       {todos.map((todo) => (

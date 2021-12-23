@@ -38,7 +38,7 @@ const TodoFilters: FC<TodoFiltersProps> = (props) => {
           </button>
         ))}
       </div>
-      <div>
+      <div className="todo-filters__btn">
         <button id="clear-completed" onClick={clearCompletedTodos}>
           Clear Completed
         </button>

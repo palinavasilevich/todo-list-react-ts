@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { ITodo } from "../types/types";
 import classnames from "classnames";
 
@@ -19,7 +19,7 @@ const TodoItem: FC<ITodoItemProps> = (props) => {
   };
 
   return (
-    <li className="todo-card todo-item">
+    <li className="todo-card todo-item" draggable={true}>
       <div
         className={classnames("todo-card__btn", {
           "todo-item__check": isCompleted,
