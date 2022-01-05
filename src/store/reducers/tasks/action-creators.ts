@@ -23,8 +23,7 @@ export const TodoActionCreators = {
     payload: id,
   }),
 
-  clearComletedTodos: (completedTodos: string[]): IClearCompletedTodos => ({
+  clearComletedTodos: (): IClearCompletedTodos => ({
     type: TodoActionEnum.CLEAR_COMPLETED_TODOS,
-    payload: completedTodos,
   }),
 };

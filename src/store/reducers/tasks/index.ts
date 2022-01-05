@@ -36,9 +36,7 @@ export default function tasksReducer(
     case TodoActionEnum.CLEAR_COMPLETED_TODOS:
       return {
         ...state,
-        todos: [
-          ...state.todos.filter((todo) => !action.payload.includes(todo.id)),
-        ],
+        todos: [...state.todos.filter((todo) => !todo.isCompleted)],
       };
     default:
       return state;

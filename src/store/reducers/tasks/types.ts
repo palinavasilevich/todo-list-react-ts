@@ -30,7 +30,6 @@ export interface ICompleteTodo {
 
 export interface IClearCompletedTodos {
   type: TodoActionEnum.CLEAR_COMPLETED_TODOS;
-  payload: string[];
 }
 
 export type TodoActionTypes =

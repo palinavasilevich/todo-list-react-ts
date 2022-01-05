@@ -1,4 +1,4 @@
-import React, { FC, ReactEventHandler, useState } from "react";
+import React, { FC, ReactEventHandler, useCallback, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import TodoInput from "../../components/todo-input/TodoInput";
@@ -10,21 +10,14 @@ import { useDispatch } from "react-redux";
 import { TodoActionCreators } from "../../store/reducers/tasks/action-creators";
 import { FilterActionCreators } from "../../store/reducers/filters/action-creators";
 
-import {
-  makeGetFilteredTodos,
-  makeGetCompletedTodos,
-} from "../../store/selectors";
+import { getFilteredTodos } from "../../store/selectors";
 
 const Todo: FC = () => {
   const [title, setTitle] = useState("");
 
   const { activeFilter } = useTypedSelector((state) => state.filters);
 
-  const getFilteredTodos = React.useMemo(makeGetFilteredTodos, []);
-  const filteredTodos = useTypedSelector((state) => getFilteredTodos(state));
-
-  const getCompletedTodos = React.useMemo(makeGetCompletedTodos, []);
-  const completedTodos = useTypedSelector((state) => getCompletedTodos(state));
+  const filteredTodos = useTypedSelector(getFilteredTodos);
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -41,13 +34,16 @@ const Todo: FC = () => {
     }
   };
 
-  const removeTodo = (id: string): void => {
-    dispatch(TodoActionCreators.removeTodo(id));
-  };
+  const removeTodo = useCallback(
+    (id: string) => (): void => {
+      dispatch(TodoActionCreators.removeTodo(id));
+    },
+    []
+  );
 
-  const completeTodo = (id: string): void => {
+  const completeTodo = useCallback((id: string): void => {
     dispatch(TodoActionCreators.completeTodo(id));
-  };
+  }, []);
 
   const handleClick = (): void => {
     addTask();
@@ -65,17 +61,22 @@ const Todo: FC = () => {
     if (e.key === "Enter") addTask();
   };
 
-  const changeFilter: React.MouseEventHandler<HTMLDivElement> = (e): void => {
-    const filter = (e.target as HTMLButtonElement).id;
+  const changeFilter: React.MouseEventHandler<HTMLDivElement> = useCallback(
+    (e): void => {
+      const filter = (e.target as HTMLButtonElement).id;
 
-    if (filter && filter !== activeFilter) {
-      dispatch(FilterActionCreators.changeFilter(filter));
-    }
-  };
+      if (filter && filter !== activeFilter) {
+        dispatch(FilterActionCreators.changeFilter(filter));
+      }
+    },
+    [activeFilter]
+  );
 
-  const clearCompletedTodos = (): void => {
-    dispatch(TodoActionCreators.clearComletedTodos(completedTodos));
-  };
+  const clearCompletedTodos = useCallback((): void => {
+    dispatch(TodoActionCreators.clearComletedTodos());
+  }, []);
+
+  console.warn("todo");
 
   return (
     <div className="todo-wrapper">
