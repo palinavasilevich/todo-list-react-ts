@@ -3,21 +3,28 @@ import { v4 as uuidv4 } from "uuid";
 
 import TodoInput from "../../components/todo-input/TodoInput";
 import TodoList from "../../components/TodoList";
-import TodoFilters from "../../components/TodoFilters";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { AppDispatch } from "../../store";
 import { useDispatch } from "react-redux";
 
 import { TodoActionCreators } from "../../store/reducers/tasks/action-creators";
 import { FilterActionCreators } from "../../store/reducers/filters/action-creators";
-import { ITodo } from "../../types/types";
+
+import {
+  makeGetFilteredTodos,
+  makeGetCompletedTodos,
+} from "../../store/selectors";
 
 const Todo: FC = () => {
   const [title, setTitle] = useState("");
 
-  const { todos } = useTypedSelector((state) => state.tasks);
-
   const { activeFilter } = useTypedSelector((state) => state.filters);
+
+  const getFilteredTodos = React.useMemo(makeGetFilteredTodos, []);
+  const filteredTodos = useTypedSelector((state) => getFilteredTodos(state));
+
+  const getCompletedTodos = React.useMemo(makeGetCompletedTodos, []);
+  const completedTodos = useTypedSelector((state) => getCompletedTodos(state));
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -65,23 +72,6 @@ const Todo: FC = () => {
       dispatch(FilterActionCreators.changeFilter(filter));
     }
   };
-
-  const filteredTodos = React.useMemo<ITodo[]>(() => {
-    switch (activeFilter) {
-      case "active":
-        return todos.filter((todo) => !todo.isCompleted);
-
-      case "completed":
-        return todos.filter((todo) => todo.isCompleted);
-
-      default:
-        return todos;
-    }
-  }, [todos, activeFilter]);
-
-  const completedTodos = React.useMemo<string[]>(() => {
-    return todos.filter((todo) => todo.isCompleted).map((task) => task.id);
-  }, [activeFilter, todos]);
 
   const clearCompletedTodos = (): void => {
     dispatch(TodoActionCreators.clearComletedTodos(completedTodos));

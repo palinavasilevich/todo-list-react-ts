@@ -22,6 +22,8 @@ const TodoList: FC<TodoListProps> = (props) => {
     clearCompletedTodos,
   } = props;
 
+  console.warn("TodoList");
+
   return (
     <ul className="todo-list">
       {todos.map((todo) => (
