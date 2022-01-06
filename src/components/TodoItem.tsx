@@ -18,6 +18,8 @@ const TodoItem: FC<ITodoItemProps> = (props) => {
     return (): void => completeTodo(id);
   };
 
+  console.warn("TodoItem");
+
   return (
     <li className="todo-card todo-item" draggable={true}>
       <div
@@ -44,4 +46,4 @@ const TodoItem: FC<ITodoItemProps> = (props) => {
   );
 };
 
-export default TodoItem;
+export default React.memo(TodoItem);

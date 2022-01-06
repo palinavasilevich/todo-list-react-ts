@@ -22,6 +22,8 @@ const TodoFilters: FC<TodoFiltersProps> = (props) => {
     { id: "completed", label: "Completed" },
   ];
 
+  console.warn("TodoFilters");
+
   return (
     <div className="todo-card todo-filters">
       <p>
@@ -47,4 +49,4 @@ const TodoFilters: FC<TodoFiltersProps> = (props) => {
   );
 };
 
-export default TodoFilters;
+export default React.memo(TodoFilters);

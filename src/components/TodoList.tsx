@@ -12,7 +12,7 @@ interface TodoListProps {
   clearCompletedTodos: () => void;
 }
 
-const TodoList: FC<TodoListProps> = (props) => {
+const TodoList: FC<TodoListProps> = React.memo((props) => {
   const {
     todos,
     removeTodo,
@@ -21,6 +21,8 @@ const TodoList: FC<TodoListProps> = (props) => {
     changeFilter,
     clearCompletedTodos,
   } = props;
+
+  console.warn("TodoList");
 
   return (
     <ul className="todo-list">
@@ -40,6 +42,5 @@ const TodoList: FC<TodoListProps> = (props) => {
       />
     </ul>
   );
-};
-
+});
 export default TodoList;
