@@ -4,7 +4,7 @@ import { load } from "redux-localstorage-simple";
 const savedTodos: any = load({ namespace: "todo-list" });
 
 const initialState: ITodoState = {
-  todos: savedTodos.tasks.todos || [],
+  todos: savedTodos.tasks?.todos || [],
 };
 
 export default function tasksReducer(

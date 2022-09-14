@@ -22,8 +22,6 @@ const TodoFilters: FC<TodoFiltersProps> = (props) => {
     { id: "completed", label: "Completed" },
   ];
 
-  console.warn("TodoFilters");
-
   return (
     <div className="todo-card todo-filters">
       <p>

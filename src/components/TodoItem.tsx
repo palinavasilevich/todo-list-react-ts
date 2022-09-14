@@ -18,8 +18,6 @@ const TodoItem: FC<ITodoItemProps> = (props) => {
     return (): void => completeTodo(id);
   };
 
-  console.warn("TodoItem");
-
   return (
     <li className="todo-card todo-item" draggable={true}>
       <div

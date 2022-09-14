@@ -34,12 +34,9 @@ const Todo: FC = () => {
     }
   };
 
-  const removeTodo = useCallback(
-    (id: string) => (): void => {
-      dispatch(TodoActionCreators.removeTodo(id));
-    },
-    []
-  );
+  const removeTodo = useCallback((id: string): void => {
+    dispatch(TodoActionCreators.removeTodo(id));
+  }, []);
 
   const completeTodo = useCallback((id: string): void => {
     dispatch(TodoActionCreators.completeTodo(id));
@@ -75,8 +72,6 @@ const Todo: FC = () => {
   const clearCompletedTodos = useCallback((): void => {
     dispatch(TodoActionCreators.clearComletedTodos());
   }, []);
-
-  console.warn("todo");
 
   return (
     <div className="todo-wrapper">

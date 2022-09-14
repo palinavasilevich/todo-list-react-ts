@@ -8,7 +8,6 @@ const selectTodos = (state: RootState) => state.tasks.todos;
 export const getFilteredTodos = createSelector(
   [selectActiveFilter, selectTodos],
   (activeFilter: string, todos: ITodo[]) => {
-    console.warn("****FILTERED_TODOS*****");
     switch (activeFilter) {
       case "active":
         return todos.filter((todo) => !todo.isCompleted);
@@ -25,7 +24,6 @@ export const getFilteredTodos = createSelector(
 export const getCompletedTodos = createSelector(
   [selectTodos],
   (todos: ITodo[]) => {
-    console.warn("****COMPLETED_TODOS*****");
     return todos.filter((todo) => todo.isCompleted).map((task) => task.id);
   }
 );
